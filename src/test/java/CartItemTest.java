@@ -6,31 +6,31 @@ import java.math.BigDecimal;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-public class SalesTaxCalculatorTest {
+public class CartItemTest {
 
-    private SalesTaxCalculator salesTaxCalculator;
+    private CartItem cartItem;
 
     @Before
     public void setUp() {
-        salesTaxCalculator = new SalesTaxCalculator();
+        cartItem = new CartItem();
     }
 
     @Test
-    public void calculatePriceShouldNotAddAnyBasicTaxOnExemptItems() {
+    public void calculatePriceWithTaxShouldNotAddAnyBasicTaxOnExemptItems() {
         Item exemptItem = new Item("Exempt Item", true);
         BigDecimal price = new BigDecimal(100);
 
-        BigDecimal result = salesTaxCalculator.calculatePriceForItem(exemptItem, price);
+        BigDecimal result = cartItem.calculatePriceWithTax(exemptItem, price);
 
         assertThat(result, equalTo(new BigDecimal("100.00")));
     }
 
     @Test
-    public void calculatePriceShouldAddBasicTaxOnNonExemptItems() {
+    public void calculatePriceWithTaxShouldAddBasicTaxOnNonExemptItems() {
         Item exemptItem = new Item("Non Exempt Item", false);
         BigDecimal price = new BigDecimal(100);
 
-        BigDecimal result = salesTaxCalculator.calculatePriceForItem(exemptItem, price);
+        BigDecimal result = cartItem.calculatePriceWithTax(exemptItem, price);
 
         assertThat(result, equalTo(new BigDecimal("105.00")));
     }
