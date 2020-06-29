@@ -2,7 +2,7 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 
 public class SalesTaxCalculator {
-    public BigDecimal calculateBasicTaxForItem(Item item, BigDecimal price) {
+    public BigDecimal calculatePriceForItem(Item item, BigDecimal price) {
         if(item.isExempt()){
             return price.setScale(2, RoundingMode.HALF_UP);
         }
