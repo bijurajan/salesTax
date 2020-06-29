@@ -2,7 +2,15 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 
 public class CartItem {
-    public BigDecimal calculatePriceWithTax(Item item, BigDecimal price) {
+    private final Item item;
+    private final BigDecimal price;
+
+    public CartItem(Item item, BigDecimal price) {
+        this.item = item;
+        this.price = price;
+    }
+
+    public BigDecimal calculatePriceWithTax() {
         if(item.isExempt()){
             return price.setScale(2, RoundingMode.HALF_UP);
         }
