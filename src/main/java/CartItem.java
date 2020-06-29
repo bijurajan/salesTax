@@ -3,6 +3,8 @@ import java.math.RoundingMode;
 
 public class CartItem {
     public static final BigDecimal BASIC_SALES_TAX = BigDecimal.TEN;
+    public static final BigDecimal IMPORT_DUTY = BigDecimal.valueOf(5);
+    public static final BigDecimal HUNDRED = BigDecimal.valueOf(100);
     private final Item item;
     private final BigDecimal price;
 
@@ -21,10 +23,25 @@ public class CartItem {
 
     public BigDecimal calculateSalesTax() {
         if(item.isExempt()){
-            return BigDecimal.ZERO;
+            if(!item.isImported()){
+                return BigDecimal.ZERO;
+            }
+            return addTax(price, IMPORT_DUTY);
         }
-        return price.multiply(BASIC_SALES_TAX)
-                .divide(BigDecimal.valueOf(100))
-                .setScale(2, RoundingMode.HALF_UP);
+        if(item.isImported()) {
+            BigDecimal basicSalesTax = addTax(price, BASIC_SALES_TAX);
+            BigDecimal importDuty = addTax(price, IMPORT_DUTY);
+            return basicSalesTax.add(importDuty);
+        }
+        return addTax(price, BASIC_SALES_TAX);
+    }
+
+    private BigDecimal addTax(BigDecimal price, BigDecimal salesTax) {
+        return roundToNext2Decimal(price.multiply(salesTax).divide(HUNDRED))
+    }
+
+    private BigDecimal roundToNext2Decimal(BigDecimal price) {
+        return price.divide(new BigDecimal(5)).setScale(2,
+                RoundingMode.UP).multiply(new BigDecimal(5));
     }
 }
