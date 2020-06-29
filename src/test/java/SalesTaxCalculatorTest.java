@@ -16,11 +16,21 @@ public class SalesTaxCalculatorTest {
     }
 
     @Test
-    public void shouldAddOnlyImportTaxOnExemptItems() {
+    public void shouldNotAddAnyBasicTaxOnExemptItems() {
         Item exemptItem = new Item("Exempt Item", true);
         BigDecimal price = new BigDecimal(100);
 
-        BigDecimal result = salesTaxCalculator.calculateTaxForItem(exemptItem, price);
+        BigDecimal result = salesTaxCalculator.calculateBasicTaxForItem(exemptItem, price);
+
+        assertThat(result, equalTo(new BigDecimal("100.00")));
+    }
+
+    @Test
+    public void shouldNotAddBasicTaxOnNonExemptItems() {
+        Item exemptItem = new Item("Non Exempt Item", false);
+        BigDecimal price = new BigDecimal(100);
+
+        BigDecimal result = salesTaxCalculator.calculateBasicTaxForItem(exemptItem, price);
 
         assertThat(result, equalTo(new BigDecimal("105.00")));
     }

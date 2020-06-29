@@ -6,4 +6,8 @@ public class Item {
         this.description = description;
         this.isExempt = isExempt;
     }
+
+    public boolean isExempt() {
+        return isExempt;
+    }
 }
