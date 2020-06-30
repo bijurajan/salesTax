@@ -66,4 +66,24 @@ public class CartItemTest {
 
         assertThat(result, equalTo(new BigDecimal("16.49")));
     }
+
+    @Test
+    public void calculatePriceForImportedItemShouldAddImportDutyOnExemptItems() {
+        Item exemptItem = new Item("Imported Exempt Item", true, true);
+        BigDecimal price = BigDecimal.valueOf(10.00);
+
+        BigDecimal result = new CartItem(exemptItem, price).calculatePriceWithTax();
+
+        assertThat(result, equalTo(new BigDecimal("10.50")));
+    }
+
+    @Test
+    public void calculatePriceForImportedItemShouldAddBasicTaxAndImportDutyOnNonExemptItems() {
+        Item nonExemptItem = new Item("Imported Non Exempt Item", false, true);
+        BigDecimal price = BigDecimal.valueOf(47.50);
+
+        BigDecimal result = new CartItem(nonExemptItem, price).calculatePriceWithTax();
+
+        assertThat(result, equalTo(new BigDecimal("54.65")));
+    }
 }

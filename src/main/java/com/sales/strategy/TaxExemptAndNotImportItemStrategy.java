@@ -1,6 +1,8 @@
+package com.sales.strategy;
+
 import java.math.BigDecimal;
 
-public class TaxExemptAndNotImportItemStrategy implements CartItemPriceStrategy{
+public class TaxExemptAndNotImportItemStrategy implements CartItemPriceStrategy {
     private BigDecimal price;
 
     public TaxExemptAndNotImportItemStrategy(BigDecimal price) {

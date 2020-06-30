@@ -1,3 +1,5 @@
+import com.sales.strategy.*;
+
 import java.math.BigDecimal;
 
 public class CartItem {
@@ -6,6 +8,8 @@ public class CartItem {
 
     public CartItem(Item item, BigDecimal price) {
         this.price = price;
+
+        //Possible move to factory?
         if (item.isExempt() && !item.isImported()) {
             this.priceStrategy = new TaxExemptAndNotImportItemStrategy(price);
         }
