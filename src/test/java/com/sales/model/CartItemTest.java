@@ -1,3 +1,5 @@
+package com.sales.model;
+
 import org.junit.Test;
 
 import java.math.BigDecimal;
@@ -9,7 +11,7 @@ public class CartItemTest {
 
     @Test
     public void salesTaxShouldBeZeroOnExemptItems() {
-        Item exemptItem = new Item("Exempt Item", true, false);
+        Item exemptItem = new Item("Exempt com.sales.model.Item", true, false);
         BigDecimal price = BigDecimal.valueOf(12.49);
 
         BigDecimal result = new CartItem(exemptItem, price).calculateSalesTax();
@@ -19,7 +21,7 @@ public class CartItemTest {
 
     @Test
     public void salesTaxShouldAddBasicTaxOnNonExemptItems() {
-        Item nonExemptItem = new Item("Non-Exempt Item", false, false);
+        Item nonExemptItem = new Item("Non-Exempt com.sales.model.Item", false, false);
         BigDecimal price = BigDecimal.valueOf(14.99);
 
         BigDecimal result = new CartItem(nonExemptItem, price).calculateSalesTax();
@@ -29,7 +31,7 @@ public class CartItemTest {
 
     @Test
     public void salesTaxShouldOnlyAddImportDutyOnExemptItems() {
-        Item nonExemptItem = new Item("Imported Exempt Item", true, true);
+        Item nonExemptItem = new Item("Imported Exempt com.sales.model.Item", true, true);
         BigDecimal price = BigDecimal.valueOf(10.00);
 
         BigDecimal result = new CartItem(nonExemptItem, price).calculateSalesTax();
@@ -39,7 +41,7 @@ public class CartItemTest {
 
     @Test
     public void salesTaxShouldAddBasicTaxAndImportDutyOnNonExemptItems() {
-        Item nonExemptItem = new Item("Imported Non-Exempt Item", false, true);
+        Item nonExemptItem = new Item("Imported Non-Exempt com.sales.model.Item", false, true);
         BigDecimal price = BigDecimal.valueOf(47.50);
 
         BigDecimal result = new CartItem(nonExemptItem, price).calculateSalesTax();
@@ -49,7 +51,7 @@ public class CartItemTest {
 
     @Test
     public void calculatePriceShouldAddNoTaxOnExemptItems() {
-        Item exemptItem = new Item("Exempt Item", true, false);
+        Item exemptItem = new Item("Exempt com.sales.model.Item", true, false);
         BigDecimal price = BigDecimal.valueOf(12.49);
 
         BigDecimal result = new CartItem(exemptItem, price).calculatePriceWithTax();
@@ -59,7 +61,7 @@ public class CartItemTest {
 
     @Test
     public void calculatePriceShouldAddBasicTaxOnNonExemptItems() {
-        Item nonExemptItem = new Item("Non Exempt Item", false, false);
+        Item nonExemptItem = new Item("Non Exempt com.sales.model.Item", false, false);
         BigDecimal price = BigDecimal.valueOf(14.99);
 
         BigDecimal result = new CartItem(nonExemptItem, price).calculatePriceWithTax();
@@ -69,7 +71,7 @@ public class CartItemTest {
 
     @Test
     public void calculatePriceForImportedItemShouldAddImportDutyOnExemptItems() {
-        Item exemptItem = new Item("Imported Exempt Item", true, true);
+        Item exemptItem = new Item("Imported Exempt com.sales.model.Item", true, true);
         BigDecimal price = BigDecimal.valueOf(10.00);
 
         BigDecimal result = new CartItem(exemptItem, price).calculatePriceWithTax();
@@ -79,7 +81,7 @@ public class CartItemTest {
 
     @Test
     public void calculatePriceForImportedItemShouldAddBasicTaxAndImportDutyOnNonExemptItems() {
-        Item nonExemptItem = new Item("Imported Non Exempt Item", false, true);
+        Item nonExemptItem = new Item("Imported Non Exempt com.sales.model.Item", false, true);
         BigDecimal price = BigDecimal.valueOf(47.50);
 
         BigDecimal result = new CartItem(nonExemptItem, price).calculatePriceWithTax();

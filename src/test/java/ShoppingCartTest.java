@@ -1,3 +1,5 @@
+import com.sales.model.CartItem;
+import com.sales.model.Item;
 import org.junit.Test;
 
 import java.math.BigDecimal;

@@ -1,3 +1,5 @@
+package com.sales.model;
+
 public class Item {
     private final String description;
     private final boolean isExempt;

@@ -1,7 +1,8 @@
 package com.sales.strategy;
 
+import com.sales.util.PriceFormatUtil;
+
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 
 public class TaxExemptAndImportItemStrategy implements CartItemPriceStrategy {
     private final BigDecimal price;
@@ -14,11 +15,6 @@ public class TaxExemptAndImportItemStrategy implements CartItemPriceStrategy {
 
     @Override
     public BigDecimal calculateSalesTax() {
-        return roundToNext2Decimal(price.multiply(IMPORT_DUTY).divide(HUNDRED));
-    }
-
-    private BigDecimal roundToNext2Decimal(BigDecimal price) {
-        return price.divide(new BigDecimal(5)).setScale(2,
-                RoundingMode.UP).multiply(new BigDecimal(5));
+        return PriceFormatUtil.roundToNext2Decimal(price.multiply(IMPORT_DUTY).divide(HUNDRED));
     }
 }

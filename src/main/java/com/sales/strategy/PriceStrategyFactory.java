@@ -9,11 +9,11 @@ public class PriceStrategyFactory {
     }
 
     public static CartItemPriceStrategy getStrategy(BigDecimal price, boolean exempt, boolean imported) {
-        if (exempt && !imported) {
-            return new TaxExemptAndNotImportItemStrategy(price);
+        if (exempt && imported) {
+            return new TaxExemptAndImportItemStrategy(price);
         }
         if (exempt) {
-            return new TaxExemptAndImportItemStrategy(price);
+            return new TaxExemptAndNotImportItemStrategy(price);
         }
         if (imported) {
             return new NotTaxExemptAndImportItemStrategy(price);

@@ -1,3 +1,5 @@
+package com.sales.model;
+
 import com.sales.strategy.*;
 
 import java.math.BigDecimal;

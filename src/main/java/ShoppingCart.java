@@ -1,3 +1,5 @@
+import com.sales.model.CartItem;
+
 import java.math.BigDecimal;
 import java.util.List;
 
