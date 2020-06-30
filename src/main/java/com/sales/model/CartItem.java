@@ -6,7 +6,7 @@ import java.math.BigDecimal;
 
 public class CartItem {
     private final BigDecimal price;
-    private CartItemPriceStrategy priceStrategy;
+    private final CartItemPriceStrategy priceStrategy;
 
     public CartItem(Item item, BigDecimal price) {
         this.price = price;

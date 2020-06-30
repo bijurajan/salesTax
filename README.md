@@ -89,3 +89,25 @@ Output 3:
 Sales Taxes: 6.70
 
 Total: 74.68
+
+---
+
+### Steps to build and run tests:
+`./gradlew build test`
+
+### Acceptance Tests to validate provided input/output test cases
+ShoppingCartTest has the 3 input scenarios with expected outputs
+
+---
+DEV NOTES:
+Providing an Java object oriented solution breaking down into smaller classes with SRP.
+
+As part of refactoring, pulled out the algorithmic logic into different strategies.
+Also, to make it more clean, pulled out logic from CartItem into its own factory.
+
+Assumption - Parsing of the text file into the desired Shopping Cart CartItems could be done to make it more end-to-end. 
+
+[Github REPO](https://github.com/bijurajan/salesTax)
+
+
+

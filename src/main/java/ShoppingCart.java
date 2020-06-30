@@ -11,12 +11,14 @@ public class ShoppingCart {
     }
 
     public String calculateSalesTax() {
-        return this.cartItems.stream().map(CartItem::calculateSalesTax)
+        return this.cartItems.stream()
+                .map(CartItem::calculateSalesTax)
                 .reduce(BigDecimal.ZERO, BigDecimal::add).toString();
     }
 
     public String calculateTotal() {
-        return this.cartItems.stream().map(CartItem::calculatePriceWithTax)
+        return this.cartItems.stream()
+                .map(CartItem::calculatePriceWithTax)
                 .reduce(BigDecimal.ZERO, BigDecimal::add).toString();
     }
 }
