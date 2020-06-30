@@ -14,7 +14,7 @@ public class CartItem {
     }
 
     public BigDecimal calculatePriceWithTax() {
-        if(item.isExempt()){
+        if (item.isExempt()) {
             return price.setScale(2, RoundingMode.HALF_UP);
         }
         BigDecimal multiplicand = new BigDecimal("1.05");
@@ -22,22 +22,25 @@ public class CartItem {
     }
 
     public BigDecimal calculateSalesTax() {
-        if(item.isExempt()){
-            if(!item.isImported()){
-                return BigDecimal.ZERO;
-            }
+        if (item.isExempt() && !item.isImported()) {
+            return BigDecimal.ZERO;
+        }
+        if (item.isExempt() && item.isImported()) {
             return addTax(price, IMPORT_DUTY);
         }
-        if(item.isImported()) {
+        if (!item.isExempt() && item.isImported() ) {
             BigDecimal basicSalesTax = addTax(price, BASIC_SALES_TAX);
             BigDecimal importDuty = addTax(price, IMPORT_DUTY);
             return basicSalesTax.add(importDuty);
         }
-        return addTax(price, BASIC_SALES_TAX);
+        if(!item.isExempt() && !item.isImported()) {
+            return addTax(price, BASIC_SALES_TAX);
+        }
+        return null;
     }
 
     private BigDecimal addTax(BigDecimal price, BigDecimal salesTax) {
-        return roundToNext2Decimal(price.multiply(salesTax).divide(HUNDRED))
+        return roundToNext2Decimal(price.multiply(salesTax).divide(HUNDRED));
     }
 
     private BigDecimal roundToNext2Decimal(BigDecimal price) {
