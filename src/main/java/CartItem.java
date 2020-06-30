@@ -8,20 +8,7 @@ public class CartItem {
 
     public CartItem(Item item, BigDecimal price) {
         this.price = price;
-
-        //Possible move to factory?
-        if (item.isExempt() && !item.isImported()) {
-            this.priceStrategy = new TaxExemptAndNotImportItemStrategy(price);
-        }
-        if (item.isExempt() && item.isImported()) {
-            this.priceStrategy = new TaxExemptAndImportItemStrategy(price);
-        }
-        if (!item.isExempt() && item.isImported()) {
-            this.priceStrategy = new NotTaxExemptAndImportItemStrategy(price);
-        }
-        if (!item.isExempt() && !item.isImported()) {
-            this.priceStrategy = new NotTaxExemptAndNotImportItemStrategy(price);
-        }
+        this.priceStrategy = PriceStrategyFactory.getStrategy(price, item.isExempt(), item.isImported());
     }
 
     public BigDecimal calculatePriceWithTax() {

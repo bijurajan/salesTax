@@ -2,7 +2,7 @@ import java.math.BigDecimal;
 import java.util.List;
 
 public class ShoppingCart {
-    private List<CartItem> cartItems;
+    private final List<CartItem> cartItems;
 
     public ShoppingCart(List<CartItem> cartItems) {
         this.cartItems = cartItems;
