@@ -96,7 +96,7 @@ Total: 74.68
 `./gradlew build test`
 
 ### Acceptance Tests to validate provided input/output test cases
-ShoppingCartTest has the 3 input scenarios with expected outputs
+ShoppingCartTest has the 3 target input scenarios with expected outputs
 
 ---
 DEV NOTES:
